@@ -33,26 +33,35 @@
     </div>
 </div>
 
-    <div id = "dropdown_div" class="dd_container">
-    <label>Indicator:</label>
-        <select id="indicator_change" class="dropdown"></select></div>
-<div class="line_container">
-    <svg id="svg_line_plot"></svg>
+<div class="controls_row">
+
+    <div id="dropdown_div" class="control_box">
+
+        <label>Indicator:</label>
+
+        <select id="indicator_change" class="dropdown"></select>
+
+    </div>
+
+    <div class="control_box slider_box">
+
+        <label for="year_slider">Year:</label>
+
+        <span id="year_value">2020</span>
+
+        <input
+            type="range"
+            id="year_slider"
+            min="1960"
+            max="2020"
+            value="2020"
+            step="1"
+        >
+    </div>
 </div>
 
-<div class="slider_container">
-    <label for="year_slider">Year:</label>
-
-    <input
-        type="range"
-        id="year_slider"
-        min="1960"
-        max="2020"
-        value="2020"
-        step="1"
-    >
-
-    <span id="year_value">2020</span>
+<div class="line_container">
+    <svg id="svg_line_plot"></svg>
 </div>
 
 <div id="tooltip" style="

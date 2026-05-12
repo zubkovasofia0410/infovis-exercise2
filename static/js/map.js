@@ -3,6 +3,35 @@ let mapHeight = 500;
 let map = null;
 let mapData = null;
 
+const tooltipIndicators = [
+    "Access to electricity (% of population)",
+    "Agricultural irrigated land (% of total agricultural land)",
+    "Average precipitation in depth (mm per year)",
+    "Employment in agriculture (% of total employment) (modeled ILO estimate)",
+    "GDP per capita (current US$)",
+    "Land area (sq. km)",
+    "Population, total"
+];
+
+function buildTooltip(countryName, countryData) {
+
+    let html = `<strong>${countryName}</strong><br>`;
+
+    tooltipIndicators.forEach(function(indicator) {
+
+        let value = countryData[indicator];
+
+        if (value !== undefined && value !== null && value !== "") {
+
+            html += `
+                ${indicator}: ${value}<br>
+            `;
+        }
+    });
+
+    return html;
+}
+
 function initDropdown() {
     let columns = Object.keys(data[0]);
 
@@ -114,9 +143,7 @@ function initMap() {
 });
 
 if (countryData) {
-    let tooltipText = "<b>" + countryName + "</b><br>" +
-        "Year: " + selectedYear + "<br>" +
-        selectedIndicator + ": " + countryData[selectedIndicator];
+    let tooltipText = buildTooltip(countryName, countryData);
 
     d3.select("#tooltip")
         .style("display", "block")
